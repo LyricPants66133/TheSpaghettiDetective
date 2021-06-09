@@ -1,0 +1,19 @@
+name: Labeling new issue
+on:
+  issues:
+    types: ['opened']
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check issue for keywords
+        uses: Renato66/auto-label@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          ignore-comments: false
+          labels-synonyms: '{
+            "bug":["error","need fix","not working","bug"],
+            "Suggestion":["add","suggestion","feature"],
+            "Jetson Nano":["jetson", "jetson nano", "jetpack"],
+            "Private Server":["private server","personal server"]
+            }'
